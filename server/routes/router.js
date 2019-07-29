@@ -1,17 +1,24 @@
 // Server - running on Node.js
 
 import express from 'express';
-import bodyParser from 'body-parser';
+//import bodyParser from 'body-parser';
 import google from '../models/Google';
 
 const app = express();
 const router = express.Router();
 const port = process.env.PORT || 3001;
 
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+ });
+
+
 const routes = {
     init: () => {
-        app.use(bodyParser.urlencoded({ extended: true }));
-        app.use(bodyParser.json());
+        //app.use(bodyParser.urlencoded({ extended: true }));
+        //app.use(bodyParser.json());
         router.get('/', (req, res) => {
             res.json({ success: false, message: 'No endpoint provided!' });
             console.log('[trends server] Received a client request without any endpoint.');
