@@ -3,8 +3,8 @@
 const locations = [
     {location: "Australia", woeid: 23424748, iso: "AU"},
     //{location: "Argentine", woeid: 23424747, iso: "AR"},
-    /*{location: "Brazil", woeid: 23424768, iso: "BR"},
-    {location: "Canada", woeid: 23424775, iso: "CA"},
+    {location: "Brazil", woeid: 23424768, iso: "BR"},
+    /*{location: "Canada", woeid: 23424775, iso: "CA"},
     //{location: "France", woeid: 23424819, iso: "FR"},
     {location: "Germany", woeid: 23424829, iso: "DE"},
     {location: "India", woeid: 23424848, iso: "IN"},

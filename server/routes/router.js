@@ -1,8 +1,8 @@
 // Server - running on Node.js
 
 import express from 'express';
-//import bodyParser from 'body-parser';
-import google from '../models/Google';
+import locations from '../config/locations';
+import googleModel from '../models/Google';
 
 const app = express();
 const router = express.Router();
@@ -17,13 +17,10 @@ app.all('/*', function(req, res, next) {
 
 const routes = {
     init: () => {
-        //app.use(bodyParser.urlencoded({ extended: true }));
-        //app.use(bodyParser.json());
         router.get('/', (req, res) => {
-            res.json({ success: false, message: 'No endpoint provided!' });
-            console.log('[trends server] Received a client request without any endpoint.');
+            res.json({ success: false, error: 'No endpoint provided!' });
         });
-        routes.createEndpoint('google', google);
+        routes.createEndpoint('google_trends', googleModel);
         app.use('/api', router);
         app.listen(port, () => console.log(`[trends server] Server is running and listening to port ${port}...`));
     },
@@ -33,7 +30,14 @@ const routes = {
                 if (error) return res.json({ success: false, error: error });
                 return res.json({ success: true, data: model });
             });
-            console.log(`[trends server] Received a client request to the endpoint '${endpoint}'.`);
+        });
+        locations.forEach((location) => {
+            router.get(`/${endpoint}/${location.location}`, (req, res) => {
+                model.find({location: location.location}, (error, model) => {
+                    if (error) return res.json({ success: false, error: error });
+                    return res.json({ success: true, data: model });
+                });
+            });
         });
     }
 }

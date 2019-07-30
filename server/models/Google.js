@@ -10,4 +10,4 @@ const googleSchema = new mongoose.Schema({
     date: String
 }, {timestamps: true});
 
-export default mongoose.model('google', googleSchema);
+export default mongoose.model('google_trends', googleSchema);
