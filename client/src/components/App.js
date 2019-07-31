@@ -3,6 +3,7 @@ import api from '../api/data';
 import Dropdown from './Dropdown';
 import List from './List';
 import './App.css';
+require('dotenv').config({ path: '../../../.env' });
 
 export default class App extends React.Component {
     constructor() {
@@ -10,22 +11,34 @@ export default class App extends React.Component {
         this.state = {
             location: 'australia',
             platform: 'google_trends',
+            locations: [],
             data: []
         };
         this.editFilter = this.editFilter.bind(this);
+        this.getLocations = this.getLocations.bind(this);
     }
     
-    componentWillMount() {
-        
-        this.getData({...this.state});
+    componentDidMount() {
+        this.getLocations();
+    }
+    
+    getLocations() {
+        api.getData('locations').then(result => {
+            if (result.success) {
+                const newState = {...this.state};
+                newState.locations = result.data.map(a => a.location);
+                this.getData(newState);
+            }
+        });
     }
     
     getData(newState) {
-        const endpoint = `/${this.state.platform}/${this.state.location}`;
+        const endpoint = `${newState.platform}/${newState.location}`
         api.getData(endpoint).then(result => {
-            newState.data = result.data;
-            this.setState(newState);
-            console.log(this.state);
+            if (result.success) {
+                newState.data = result.data;
+                this.setState(newState);
+            }
         });
     }    
     
@@ -41,9 +54,12 @@ export default class App extends React.Component {
                 <h1>Trends</h1>
                 <div className="filter-wrapper">
                     <Dropdown label="platform" defaultVal={this.state.platform} options={['Google Trends', 'Twitter Subjects', 'YouTube Videos']} onChange={this.editFilter} />
-                    <Dropdown label="location" defaultVal={this.state.location} options={['Australia', 'Brazil', 'Canada', 'Germany']} onChange={this.editFilter} />
+                    <Dropdown label="location" defaultVal={this.state.location} options={this.state.locations} onChange={this.editFilter} />
                 </div>
-                <List data={this.state} />
+                <div>
+                    <img src={require(`../img/flags/${this.state.location}.png`)} alt={this.state.location} />
+                </div>
+                <List listData={this.state.data} />
             </div>
         );
     }
