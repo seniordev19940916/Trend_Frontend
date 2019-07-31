@@ -1,6 +1,7 @@
 import React from 'react';
 import api from '../api/data';
 import Dropdown from './Dropdown';
+import List from './List';
 import './App.css';
 
 export default class App extends React.Component {
@@ -11,35 +12,27 @@ export default class App extends React.Component {
             platform: 'google_trends',
             data: []
         };
+        this.editFilter = this.editFilter.bind(this);
     }
     
     componentWillMount() {
+        
+        this.getData({...this.state});
+    }
+    
+    getData(newState) {
         const endpoint = `/${this.state.platform}/${this.state.location}`;
         api.getData(endpoint).then(result => {
-            this.editState('data', result.data);
+            newState.data = result.data;
+            this.setState(newState);
+            console.log(this.state);
         });
-    }
+    }    
     
-    /*renderZist = () => {
-        let content = 'apa';
-        if (this.state.data.length) {
-            console.log(this.state.data);
-            content = this.state.data[0].name;
-        }
-        return (
-            <h1>{content}</h1>
-        )
-    };*/
-    
-    editState = (key, val) => {
+    editFilter(filter, val) {
         const newState = {...this.state};
-        newState[key] = val;
-        this.setState(newState);
-    }
-    
-    editFilter = (filter, val) => {
-        this.editState(filter, val);
-        //
+        newState[filter] = val;
+        this.getData(newState);
     }
     
     render() {
@@ -48,11 +41,9 @@ export default class App extends React.Component {
                 <h1>Trends</h1>
                 <div className="filter-wrapper">
                     <Dropdown label="platform" defaultVal={this.state.platform} options={['Google Trends', 'Twitter Subjects', 'YouTube Videos']} onChange={this.editFilter} />
-                    <Dropdown label="location" defaultVal={this.state.location} options={['Australia', 'Brazil', 'Denmark']} onChange={this.editFilter} />
+                    <Dropdown label="location" defaultVal={this.state.location} options={['Australia', 'Brazil', 'Canada', 'Germany']} onChange={this.editFilter} />
                 </div>
-                <div>
-                    
-                </div>
+                <List data={this.state} />
             </div>
         );
     }

@@ -6,10 +6,10 @@ import googleModel from '../models/Google';
 
 const googleTrends = {
     getTrends: () => {
-        locations.forEach((location) => {
+        locations.forEach(location => {
             googleApi.dailyTrends({geo: location.iso}, (error, results) => {
                 if (error) {
-                    console.log(`[trends server] An unexpected error occured while running a Google Trends query for ${location.location}:\n${error}`);
+                    console.log(`[trends server] An unexpected error occured while running a query to fetch data for Google Trends (${location.location}:\n${error}).`);
                 }
                 else {
                     googleModel.deleteMany({ location: location.location}, (error) => {
@@ -19,7 +19,7 @@ const googleTrends = {
                     const days = data.default.trendingSearchesDays;
                     days.forEach((trendDay, d) => {
                         const dayTrends = trendDay.trendingSearches;
-                        dayTrends.forEach((trend) => {
+                        dayTrends.forEach(trend => {
                             const dailyData = {
                                 name: trend.title.query,
                                 location: location.location,
