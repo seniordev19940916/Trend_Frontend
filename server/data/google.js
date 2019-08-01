@@ -12,6 +12,7 @@ const googleTrends = {
                     console.log(`[trends server] An unexpected error occured while running a query to fetch data for Google Trends (${location.location}:\n${error}).`);
                 }
                 else {
+                    console.log(`[trends server] Updating all database entries for Google Trends (${location.location})...`);
                     googleModel.deleteMany({ location: location.location}, (error) => {
                         if (error) return console.error(error);
                     });
@@ -33,7 +34,6 @@ const googleTrends = {
                             });
                         });
                     });
-                    console.log(`[trends server] Updating all database entries for Google Trends (${location.location})...`);
                 }
             });
         });

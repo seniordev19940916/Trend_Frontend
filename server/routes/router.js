@@ -21,23 +21,26 @@ const routes = {
         router.get('/locations', (req, res) => {
             res.json({ success: true, data: locations });
         });
-        routes.createEndpoints('google_trends', googleModel);
+        routes.createEndpoints('google_trends', googleModel, true);
+        routes.createEndpoints('reddit_subs', googleModel);
     },
-    createEndpoints: (endpoint, model) => {
+    createEndpoints: (endpoint, model, locationEndpoints = false) => {
         router.get(`/${endpoint}`, (req, res) => {
             model.find((error, model) => {
                 if (error) return res.json({ success: false, error: error });
                 return res.json({ success: true, data: model });
             });
         });
-        locations.forEach(location => {
-            router.get(`/${endpoint}/${location.location}`, (req, res) => {
-                model.find({location: location.location}, (error, model) => {
-                    if (error) return res.json({ success: false, error: error });
-                    return res.json({ success: true, data: model });
+        if (locationEndpoints) {
+            locations.forEach(location => {
+                router.get(`/${endpoint}/${location.location}`, (req, res) => {
+                    model.find({location: location.location}, (error, model) => {
+                        if (error) return res.json({ success: false, error: error });
+                        return res.json({ success: true, data: model });
+                    });
                 });
             });
-        });
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 .App {
+    color: #444;
     padding: 40px;
     background-color: #282c34;
     min-height: calc(100vh - 80px);

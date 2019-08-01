@@ -3,7 +3,6 @@ import api from '../api/data';
 import Dropdown from './Dropdown';
 import List from './List';
 import './App.css';
-require('dotenv').config({ path: '../../../.env' });
 
 export default class App extends React.Component {
     constructor() {
@@ -40,7 +39,7 @@ export default class App extends React.Component {
                 this.setState(newState);
             }
         });
-    }    
+    }
     
     editFilter(filter, val) {
         const newState = {...this.state};
@@ -53,13 +52,10 @@ export default class App extends React.Component {
             <div className="App">
                 <h1>Trends</h1>
                 <div className="filter-wrapper">
-                    <Dropdown label="platform" defaultVal={this.state.platform} options={['Google Trends', 'Twitter Subjects', 'YouTube Videos']} onChange={this.editFilter} />
-                    <Dropdown label="location" defaultVal={this.state.location} options={this.state.locations} onChange={this.editFilter} />
+                    <Dropdown label="platform" value={this.state.platform} options={['Google Trends', 'Reddit Subs', 'Twitter Subjects', 'YouTube Videos']} onChange={this.editFilter} />
+                    <Dropdown label="location" value={this.state.location} options={this.state.locations} onChange={this.editFilter} />
                 </div>
-                <div>
-                    <img src={require(`../img/flags/${this.state.location}.png`)} alt={this.state.location} />
-                </div>
-                <List listData={this.state.data} />
+                <List data={this.state.data} platform={this.state.platform} location={this.state.location} />
             </div>
         );
     }
