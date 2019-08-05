@@ -1,9 +1,10 @@
-// Mongoose model for Google Trends (Daily)
+// Mongoose model for Reddit Subs
 
 import mongoose from 'mongoose';
 
 const redditSchema = new mongoose.Schema({
     name: String,
+    location: String,
     url: String
 }, {timestamps: true});
 

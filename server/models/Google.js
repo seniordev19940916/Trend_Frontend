@@ -1,4 +1,4 @@
-// Mongoose model for Google Trends (Daily)
+// Mongoose model for Google Trends
 
 import mongoose from 'mongoose';
 
@@ -6,8 +6,9 @@ const googleSchema = new mongoose.Schema({
     name: String,
     location: String,
     traffic: Number,
+    url: String,
     image: String,
-    date: String
+    date: Date
 }, {timestamps: true});
 
 export default mongoose.model('google_trends', googleSchema);

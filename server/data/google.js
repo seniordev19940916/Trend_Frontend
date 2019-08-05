@@ -25,8 +25,9 @@ const googleTrends = {
                                 name: trend.title.query,
                                 location: location.location,
                                 traffic: parseInt(trend.formattedTraffic) * 1000,
+                                url: `https://www.google.com/search?q=${encodeURIComponent(trend.title.query)}`,
                                 image: trend.image.imageUrl,
-                                date: trendDay.date
+                                date: trendDay.date.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3')
                             }; 
                             const dbData = new googleModel(dailyData);
                             dbData.save((error, dbData) => {

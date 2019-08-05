@@ -2,10 +2,10 @@
 
 import 'dotenv/config';
 import mongoose from 'mongoose';
+import routes from './routes/router';
 import googleTrends from './data/google';
 import redditSubs from './data/reddit';
-//import youtubeVideos from './data/youtube';
-import routes from './routes/router';
+import youtubeVideos from './data/youtube';
 
 routes.init();
 
@@ -17,5 +17,5 @@ db.once('open', () => {
     console.log('[trends server] Successfully connected to MongoDB!');
     googleTrends.getTrends()
     redditSubs.getSubs();
-    //youtubeVideos.getVideos();
+    youtubeVideos.getVideos();
 });

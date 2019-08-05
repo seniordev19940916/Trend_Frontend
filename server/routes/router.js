@@ -3,6 +3,8 @@
 import express from 'express';
 import locations from '../config/locations';
 import googleModel from '../models/Google';
+import redditModel from '../models/Reddit';
+import youtubeModel from '../models/Youtube';
 
 const app = express();
 const router = express.Router();
@@ -22,7 +24,8 @@ const routes = {
             res.json({ success: true, data: locations });
         });
         routes.createEndpoints('google_trends', googleModel, true);
-        routes.createEndpoints('reddit_subs', googleModel);
+        routes.createEndpoints('reddit_subs', redditModel);
+        routes.createEndpoints('youtube_videos', youtubeModel, true);
     },
     createEndpoints: (endpoint, model, locationEndpoints = false) => {
         router.get(`/${endpoint}`, (req, res) => {
