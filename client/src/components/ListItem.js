@@ -8,7 +8,7 @@ const ListItem = ({platform, item}) => {
         if (platform === 'google_trends') {
             return (
                 <div className="ListItem google">
-                    <img src={item.image} alt="Thumbnail" />
+                    <img src={item.image ? item.image : require('../img/misc/not-found.jpg')} alt="Thumbnail" />
                     <div className="metric">{item.traffic.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</div>
                     <div>{item.name}</div>
                 </div>
@@ -17,6 +17,7 @@ const ListItem = ({platform, item}) => {
         else if (platform === 'reddit_subs') {
             return (
                 <div className="ListItem reddit">
+                    <div className="metric">{item.subscribers.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</div>
                     <div>{item.name}</div>
                 </div>
             )
@@ -24,7 +25,7 @@ const ListItem = ({platform, item}) => {
         else if (platform === 'twitter_subjects') {
             return (
                 <div className="ListItem twitter">
-                    <img src={item.image} alt="Thumbnail" />
+                    <img src={item.image ? item.image : require('../img/misc/not-found.jpg')} alt="Thumbnail" />
                     <div>{item.name}</div>
                 </div>
             )
@@ -32,7 +33,8 @@ const ListItem = ({platform, item}) => {
         else if (platform === 'youtube_videos') {
             return (
                 <div className="ListItem youtube">
-                    <img src={item.image} alt="Thumbnail" />
+                    <img src={item.image ? item.image : require('../img/misc/not-found.jpg')} alt="Thumbnail" />
+                    <div className="metric">{item.views.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</div>
                     <div>{item.name}</div>
                 </div>
             )

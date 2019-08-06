@@ -17,7 +17,7 @@ const locations = [
     {location: "Turkey", woeid: 23424969, iso: "TR"},
     {location: "United Kingdom", woeid: 23424975, iso: "GB"},
     {location: "United States", woeid: 23424977, iso: "US"},*/
-    //{location: "Worldwide", woeid: 1, iso: ""}
+    {location: "Worldwide", woeid: 1, iso: ""}
 ];
 
 export default locations;

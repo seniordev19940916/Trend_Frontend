@@ -22,18 +22,16 @@ export default class App extends React.Component {
     }
     
     getLocations(newState) {
-        newState.locations = newState.platform === 'google_trends' ? [] : ['Worldwide'];
-        if (newState.platform === 'google_trends') {
-            newState.location = newState.location === 'worldwide' ? 'australia' : newState.location;
-        }
         if (newState.platform === 'reddit_subs') {
             newState.location = 'worldwide';
+            newState.locations = ['Worldwide'];
             this.getData(newState);
         }
         else {
             api.getData('locations').then(result => {
                 if (result.success) {
                     newState.locations = result.data.map(a => a.location).concat(newState.locations);
+                    newState.locations = newState.platform === 'youtube_videos' ? newState.locations : newState.locations.filter(location => location.location !== 'Worldwide');
                     this.getData(newState);
                 }
             });
@@ -41,10 +39,11 @@ export default class App extends React.Component {
     }
     
     getData(newState) {
-        const endpoint = newState.location === 'worldwide' ? newState.platform : `${newState.platform}/${newState.location}`;
+        const endpoint = `${newState.platform}/${newState.location}`;
         api.getData(endpoint).then(result => {
             if (result.success) {
                 newState.data = result.data;
+                console.log(newState);
                 this.setState(newState);
             }
         });

@@ -6,6 +6,10 @@
     border-radius: 4px;
     padding: 14px;
     background: #f2f2f2;
+    transition: all 0.2s ease-in-out;
+}
+.ListItem:hover {
+    transform: translateY(-4px);
 }
 
 .ListItem.google {
@@ -19,15 +23,15 @@
 }
 
 .ListItem .metric {
-    width: 70px;
+    min-width: 60px;
     color: #FFF;
     position: absolute;
     z-index: 10;
     left: -8px;
     top: -8px;
-    background: #00b3b3;
+    background: #339966;
     border-radius: 2px;
-    padding: 3px 0 3px 0;
+    padding: 2px 6px 2px 6px;
     font-size: 0.9em;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }

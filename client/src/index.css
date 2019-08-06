@@ -4,14 +4,3 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-ul {
-  margin-top: 0;
-}
-
-.fa-icon {
-    padding: 8px;
-    border-radius: 50%;
-    border: 2px solid;
-    font-size: 24px;
-}

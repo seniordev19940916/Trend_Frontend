@@ -12,6 +12,7 @@ const port = process.env.PORT || 3001;
 
 const routes = {
     init: () => {
+        console.log(`[trends server] Initializing server...`);
         router.all('/*', function(req, res, next) {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -23,27 +24,23 @@ const routes = {
         router.get('/locations', (req, res) => {
             res.json({ success: true, data: locations });
         });
-        routes.createEndpoints('google_trends', googleModel, true);
-        routes.createEndpoints('reddit_subs', redditModel);
-        routes.createEndpoints('youtube_videos', youtubeModel, true);
+        routes.createEndpoints('google_trends', googleModel, locations.filter(location => location.location !== 'Worldwide').map(location => location.location));
+        routes.createEndpoints('reddit_subs', redditModel, ['Worldwide']);
+        routes.createEndpoints('youtube_videos', youtubeModel, locations.map(location => location.location));
     },
-    createEndpoints: (endpoint, model, locationEndpoints = false) => {
+    createEndpoints: (endpoint, model, platformLocations) => {
         router.get(`/${endpoint}`, (req, res) => {
-            model.find((error, model) => {
-                if (error) return res.json({ success: false, error: error });
-                return res.json({ success: true, data: model });
-            });
+            res.json({ success: false, error: 'No location provided!' });
         });
-        if (locationEndpoints) {
-            locations.forEach(location => {
-                router.get(`/${endpoint}/${location.location}`, (req, res) => {
-                    model.find({location: location.location}, (error, model) => {
-                        if (error) return res.json({ success: false, error: error });
-                        return res.json({ success: true, data: model });
-                    });
+        platformLocations.forEach(location => {
+            console.log(`[trends server] Routing a new enpoint to 'api/${endpoint}/${location}'...`);
+            router.get(`/${endpoint}/${location}`, (req, res) => {
+                model.find({location: location}, (error, model) => {
+                    if (error) return res.json({ success: false, error: error });
+                    return res.json({ success: true, data: model });
                 });
             });
-        }
+        });
     }
 }
 
