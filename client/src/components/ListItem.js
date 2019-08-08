@@ -9,7 +9,7 @@ const ListItem = ({platform, item}) => {
             return (
                 <div className="ListItem google">
                     <img src={item.image ? item.image : require('../img/misc/not-found.jpg')} alt="Thumbnail" />
-                    <div className="metric">{item.traffic.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</div>
+                    <div className="metric">{item.traffic ? item.traffic.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}</div>
                     <div>{item.name}</div>
                 </div>
             )
@@ -17,7 +17,7 @@ const ListItem = ({platform, item}) => {
         else if (platform === 'reddit_subs') {
             return (
                 <div className="ListItem reddit">
-                    <div className="metric">{item.subscribers.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</div>
+                    <div className="metric">{item.subscribers ? item.subscribers.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}</div>
                     <div>{item.name}</div>
                 </div>
             )
@@ -34,7 +34,7 @@ const ListItem = ({platform, item}) => {
             return (
                 <div className="ListItem youtube">
                     <img src={item.image ? item.image : require('../img/misc/not-found.jpg')} alt="Thumbnail" />
-                    <div className="metric">{item.views.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</div>
+                    <div className="metric">{item.views ? item.views.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}</div>
                     <div>{item.name}</div>
                 </div>
             )

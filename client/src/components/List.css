@@ -1,9 +1,23 @@
 .List {
+    max-width: 1000px;
     margin: 0 auto;
     /*background: #f2f2f2;
     padding: 30px;
     border-radius: 4px;*/
 }
+
+.List > .metric {
+    display: inline-block;
+    text-transform: uppercase;
+    color: #FFF;
+    background: #339966;
+    border-radius: 2px;
+    padding: 2px 8px 3px 8px;
+    font-size: 0.8em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
 
 .list-description {
     display: flex;
@@ -14,28 +28,30 @@
 }
 
 .list-description .fa-icon {
-    /*padding: 8px;
+    padding: 8px;
     border-radius: 50%;
-    border: 2px solid;
-    font-size: 24px;*/
+    font-size: 24px;
+    color: #fff;
     margin: 0 10px 0 10px;
-    font-size: 28px;
 }
 
 .list-description .fa-icon.google_trends {
-    color: #eeb211;
+    background-color: #4285F4;
 }
 .list-description .fa-icon.reddit_subs {
-    color: #ff4301;
+    background-color: #ff4301;
 }
 .list-description .fa-icon.youtube_videos {
-    color: #c4302b;
+    background-color: #c4302b;
 }
 
 .list-description .platform {
-    font-size: 1.1em;
     font-weight: 300;
     text-transform: uppercase;
+}
+
+.list-description img {
+    height: 28px;
 }
 
 .list-items-wrapper {
@@ -43,8 +59,4 @@
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
-}
-
-.list-description img {
-    height: 28px;
 }

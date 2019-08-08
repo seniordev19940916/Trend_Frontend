@@ -26,16 +26,18 @@ export default class App extends React.Component {
             newState.location = 'worldwide';
             newState.locations = ['Worldwide'];
             this.getData(newState);
+            return;
         }
-        else {
-            api.getData('locations').then(result => {
-                if (result.success) {
-                    newState.locations = result.data.map(a => a.location).concat(newState.locations);
-                    newState.locations = newState.platform === 'youtube_videos' ? newState.locations : newState.locations.filter(location => location.location !== 'Worldwide');
-                    this.getData(newState);
-                }
-            });
+        else if (newState.platform === 'google_trends') {
+            newState.location = newState.location === 'worldwide' ? 'australia' : newState.location;
         }
+        api.getData('locations').then(result => {
+            if (result.success) {
+                newState.locations = result.data.map(a => a.location);
+                newState.locations = newState.platform === 'google_trends' ? newState.locations.filter(location => location !== 'Worldwide') : newState.locations;
+                this.getData(newState);
+            }
+        });
     }
     
     getData(newState) {
