@@ -4,13 +4,15 @@ import React from 'react';
 import './ListItem.css';
 
 const ListItem = ({platform, item}) => {
+    console.log(item);
     const getItem = (platform) => {
         if (platform === 'google_trends') {
             return (
                 <div className="ListItem google">
                     <img src={item.image ? item.image : require('../img/misc/not-found.jpg')} alt="Thumbnail" />
-                    <div className="metric">{item.traffic ? item.traffic.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}</div>
+                    <div className="metric">{item.searches ? item.searches.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}+</div>
                     <div>{item.name}</div>
+                    <div><a href={item.url} rel="noopener noreferrer" target="_blank">Visit URL</a></div>
                 </div>
             )
         }
@@ -18,7 +20,8 @@ const ListItem = ({platform, item}) => {
             return (
                 <div className="ListItem reddit">
                     <div className="metric">{item.subscribers ? item.subscribers.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}</div>
-                    <div>{item.name}</div>
+                    <h4>{item.name}</h4>
+                    <div><a href={item.url} rel="noopener noreferrer" target="_blank">reddit.com/r/{item.name}</a></div>
                 </div>
             )
         }

@@ -5,32 +5,31 @@
 }
 
 select {
+    display: block;
+    width: 140px;
+    cursor: pointer;
     -moz-appearance: none;
     text-shadow: var(--text-shadow-default);
     font-family: inherit;
     color: #fff;
     border: none;
-    padding: 10px 12px 10px 12px;
+    padding: 8px;
     background-color: rgba(0,0,0,0.1);
-    border-bottom: 2px solid var(--color-pink);
-    margin-bottom: 14px;
+    border-radius: 2px;
+    margin: 0 6px 14px 6px;
 }
+
+select option {
+    background-color: #fff;
+    color: #444;
+}
+
 input:focus,
 select:focus {
     outline: none;
     border-bottom: 2px solid var(--color-yellow);
 }
 
-select {
-    display: block;
-    width: 140px;
-    cursor: pointer;
-    padding: 9px 12px 9px 12px;
-}
 select::-ms-expand {
     display: none;
-}
-select option {
-    background-color: #fff;
-    color: #444;
 }

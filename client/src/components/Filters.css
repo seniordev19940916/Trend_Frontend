@@ -1,0 +1,28 @@
+.Filters {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.Filters img {
+    margin-top: 2px;
+    height: 32px;
+}
+
+.Filters .fa-icon {
+    padding: 8px;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.Filters .fa-icon.google_trends {
+    background-color: #4285F4;
+}
+
+.Filters .fa-icon.reddit_subs {
+    background-color: #ff4301;
+}
+
+.Filters .fa-icon.youtube_videos {
+    background-color: #c4302b;
+}

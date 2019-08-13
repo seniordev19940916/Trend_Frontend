@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 const googleSchema = new mongoose.Schema({
     name: String,
     location: String,
-    traffic: Number,
+    searches: Number,
     url: String,
     image: String,
     date: Date

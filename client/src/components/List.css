@@ -18,43 +18,7 @@
     margin-bottom: 20px;
 }
 
-
-.list-description {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFF;
-    margin-bottom: 30px;
-}
-
-.list-description .fa-icon {
-    padding: 8px;
-    border-radius: 50%;
-    font-size: 24px;
-    color: #fff;
-    margin: 0 10px 0 10px;
-}
-
-.list-description .fa-icon.google_trends {
-    background-color: #4285F4;
-}
-.list-description .fa-icon.reddit_subs {
-    background-color: #ff4301;
-}
-.list-description .fa-icon.youtube_videos {
-    background-color: #c4302b;
-}
-
-.list-description .platform {
-    font-weight: 300;
-    text-transform: uppercase;
-}
-
-.list-description img {
-    height: 28px;
-}
-
-.list-items-wrapper {
+.List .wrapper {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

@@ -1,7 +1,9 @@
 import React from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import api from '../api/data';
-import Dropdown from './Dropdown';
 import List from './List';
+import Filters from './Filters';
 import './App.css';
 
 export default class App extends React.Component {
@@ -45,7 +47,6 @@ export default class App extends React.Component {
         api.getData(endpoint).then(result => {
             if (result.success) {
                 newState.data = result.data;
-                console.log(newState);
                 this.setState(newState);
             }
         });
@@ -60,12 +61,9 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <h1>Trends</h1>
-                <div className="filter-wrapper">
-                    <Dropdown label="platform" value={this.state.platform} options={['Google Trends', 'Reddit Subs', 'YouTube Videos']} onChange={this.editFilter} />
-                    <Dropdown label="location" value={this.state.location} options={this.state.locations} onChange={this.editFilter} />
-                </div>
-                <List data={this.state.data} platform={this.state.platform} location={this.state.location} />
+                <h2>Web Trends</h2>
+                <Filters platform={this.state.platform} location={this.state.location} locations={this.state.locations} editFilter={this.editFilter} />
+                {this.state.data.length ? <List data={this.state.data} platform={this.state.platform} location={this.state.location} /> : <FontAwesomeIcon icon={faSpinner} size="3x" spin={true} color="#fff" />}
             </div>
         );
     }

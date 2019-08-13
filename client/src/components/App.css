@@ -1,18 +1,13 @@
 .App {
     color: #444;
     padding: 40px;
-    background-color: #282c34;
+    background: linear-gradient(4deg,rgba(103,25,64,1),rgba(229,102,115,1));
     min-height: calc(100vh - 80px);
     text-align: center;
 }
 
-h1 {
+h2 {
     margin-top: 0;
     font-weight: 400;
     color: #fff;
-}
-
-.filter-wrapper {
-    display: flex;
-    justify-content: center;
 }
