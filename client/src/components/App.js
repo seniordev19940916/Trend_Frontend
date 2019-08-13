@@ -59,13 +59,24 @@ class App extends React.Component {
         this.getLocations(newState);
     }
     
+    renderData() {
+        if (this.state.data.length) {
+            return (
+                <div>
+                    <Chart data={this.state.data} platform={this.state.platform} />
+                    <List data={this.state.data} platform={this.state.platform} location={this.state.location} />
+                </div>
+            )
+        }
+        return <FontAwesomeIcon icon={faSpinner} size="3x" spin={true} color="#fff" />
+    }
+    
     render() {
         return (
             <div className="App">
                 <h2>Web Trends</h2>
                 <Filters platform={this.state.platform} location={this.state.location} locations={this.state.locations} editFilter={this.editFilter} />
-                <Chart data={this.state.data}/>
-                {this.state.data.length ? <List data={this.state.data} platform={this.state.platform} location={this.state.location} /> : <FontAwesomeIcon icon={faSpinner} size="3x" spin={true} color="#fff" />}
+                {this.renderData()}
             </div>
         );
     }

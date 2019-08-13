@@ -9,21 +9,13 @@ am4core.useTheme(am4themes_animated);
 
 class Chart extends React.Component {
     componentDidMount() {
-        console.log(this.state.data);
         let chart = am4core.create('chart', am4plugins_wordCloud.WordCloud);
         let series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
-        
         series.randomness = 0.1;
         series.rotationThreshold = 0.4;
-        const chartData = [];
-        this.props.data.forEach((item) => {
-            chartData.push({
-                word: item.name, //app.decodeHTML(item.name),
-                count: item.searches === 0 ? 10000 : item.searches,
-                url: item.url
-            });
-        });
-        series.data = chartData;
+        series.minFontSize = 12;
+        series.maxFontSize = 70;
+        series.data = this.getData(this.props.platform, this.props.data);
         series.dataFields.word = "word";
         series.dataFields.value = "count";
         series.heatRules.push({
@@ -35,43 +27,13 @@ class Chart extends React.Component {
         });
         series.labels.template.url = "{url}";
         series.labels.template.urlTarget = "_blank";
-        series.labels.template.tooltipText = "[bold]{word}[/]: {value} tweet mentions";
+        series.labels.template.isHTML = true;
+        series.labels.template.tooltipText = '[bold]{word}[/]: {value}';
         series.tooltip.fontSize = 15;
         const hoverState = series.labels.template.states.create("hover");
         hoverState.properties.fill = am4core.color("#009bd6"); 
         this.chart = chart;
-        
-        /*let chart = am4core.create("chart", am4charts.XYChart);
-        chart.paddingRight = 20;
-
-        let data = [];
-        let visits = 10;
-        for (let i = 1; i < 366; i++) {
-            visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-            data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-        }
-
-        chart.data = data;
-
-        let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-        dateAxis.renderer.grid.template.location = 0;
-
-        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-        valueAxis.tooltip.disabled = true;
-        valueAxis.renderer.minWidth = 35;
-
-        let series = chart.series.push(new am4charts.LineSeries());
-        series.dataFields.dateX = "date";
-        series.dataFields.valueY = "value";
-
-        series.tooltipText = "{valueY.value}";
-        chart.cursor = new am4charts.XYCursor();
-
-        let scrollbarX = new am4charts.XYChartScrollbar();
-        scrollbarX.series.push(series);
-        chart.scrollbarX = scrollbarX;
-        this.chart = chart;
-        */
+        this.series = series;
     }
     
     componentWillUnmount() {
@@ -80,9 +42,31 @@ class Chart extends React.Component {
         }
     }
     
+    componentDidUpdate() {
+        this.series.data = this.getData(this.props.platform, this.props.data);
+    }
+    
+    getData(platform, data) {
+        const metrics = {
+            google_trends: 'searches',
+            reddit_subs: 'subscribers',
+            youtube_videos: 'views',
+        }
+        const metric = metrics[this.props.platform];        
+        const chartData = [];
+        data.forEach((item) => {
+            chartData.push({
+                word: item.name, //app.decodeHTML(item.name),
+                count: item[metric] === 0 ? 10000 : item[metric],
+                url: item.url
+            });
+        });
+        return chartData;
+    }
+    
     render() {
         return (
-            <div className="Chart" id="chart" style={{ width: "100%", height: "500px" }}></div>
+            <div className="Chart" id="chart"></div>
         );
     }
 }

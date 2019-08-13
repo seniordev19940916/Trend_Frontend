@@ -4,7 +4,6 @@ import React from 'react';
 import './ListItem.css';
 
 const ListItem = ({platform, item}) => {
-    console.log(item);
     const getItem = (platform) => {
         if (platform === 'google_trends') {
             return (
