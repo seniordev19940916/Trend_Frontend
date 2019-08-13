@@ -11,7 +11,7 @@ const List = ({data, platform, location}) => {
     
     const platformMetric = metrics[platform];
     
-    data.sort((a, b) => (a[platformMetric] < b[platformMetric]) ? 1 : -1);
+    data.sort((a, b) => a[platformMetric] < b[platformMetric] ? 1 : -1);
                             
     return (
         <div className="List">

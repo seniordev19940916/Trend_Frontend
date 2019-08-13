@@ -1,7 +1,8 @@
 .App {
     color: #444;
     padding: 40px;
-    background: linear-gradient(4deg,rgba(103,25,64,1),rgba(229,102,115,1));
+    /*background: linear-gradient(4deg,rgba(103,25,64,1),rgba(229,102,115,1));*/
+    background: #224b5b;
     min-height: calc(100vh - 80px);
     text-align: center;
 }

@@ -1,12 +1,13 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
-import api from '../api/data';
-import List from './List';
+import api from '../api/data'
 import Filters from './Filters';
+import Chart from './Chart';
+import List from './List';
 import './App.css';
 
-export default class App extends React.Component {
+class App extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -63,8 +64,11 @@ export default class App extends React.Component {
             <div className="App">
                 <h2>Web Trends</h2>
                 <Filters platform={this.state.platform} location={this.state.location} locations={this.state.locations} editFilter={this.editFilter} />
+                <Chart data={this.state.data}/>
                 {this.state.data.length ? <List data={this.state.data} platform={this.state.platform} location={this.state.location} /> : <FontAwesomeIcon icon={faSpinner} size="3x" spin={true} color="#fff" />}
             </div>
         );
     }
 }
+
+export default App;
