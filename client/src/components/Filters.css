@@ -1,4 +1,4 @@
-.Filters {
+.Filters > div {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -25,4 +25,10 @@
 
 .Filters .fa-icon.youtube_videos {
     background-color: #c4302b;
+}
+
+.Filters > p {
+    color: #ff9900;
+    text-shadow: 0 0 5px rgba(0,0,0,0.2);
+    font-style: italic;
 }

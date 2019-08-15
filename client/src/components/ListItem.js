@@ -10,7 +10,7 @@ const ListItem = ({platform, item}) => {
                 <div className="ListItem google">
                     <img src={item.image ? item.image : require('../img/misc/not-found.jpg')} alt="Thumbnail" />
                     <div className="metric">{item.searches ? item.searches.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}+</div>
-                    <div>{item.name}</div>
+                    <h4>{item.name}</h4>
                     <div><a href={item.url} rel="noopener noreferrer" target="_blank">Visit URL</a></div>
                 </div>
             )
@@ -21,14 +21,6 @@ const ListItem = ({platform, item}) => {
                     <div className="metric">{item.subscribers ? item.subscribers.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}</div>
                     <h4>{item.name}</h4>
                     <div><a href={item.url} rel="noopener noreferrer" target="_blank">reddit.com/r/{item.name}</a></div>
-                </div>
-            )
-        }
-        else if (platform === 'twitter_subjects') {
-            return (
-                <div className="ListItem twitter">
-                    <img src={item.image ? item.image : require('../img/misc/not-found.jpg')} alt="Thumbnail" />
-                    <div>{item.name}</div>
                 </div>
             )
         }

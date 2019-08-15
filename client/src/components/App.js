@@ -3,7 +3,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import api from '../api/data'
 import Filters from './Filters';
-import Chart from './Chart';
+import BarChart from './BarChart';
+import WordChart from './WordChart';
 import List from './List';
 import './App.css';
 
@@ -60,21 +61,21 @@ class App extends React.Component {
     }
     
     renderData() {
-        if (this.state.data.length) {
-            return (
-                <div>
-                    <Chart data={this.state.data} platform={this.state.platform} />
-                    <List data={this.state.data} platform={this.state.platform} location={this.state.location} />
-                </div>
-            )
+        if (!this.state.data.length) {
+            return <FontAwesomeIcon className="spinning-wheel" icon={faSpinner} size="5x" spin={true} color="#fff" />
         }
-        return <FontAwesomeIcon icon={faSpinner} size="3x" spin={true} color="#fff" />
+        const chart = this.state.platform === 'google_trends' ? <WordChart data={this.state.data} /> : this.state.platform === 'reddit_subs' ? <WordChart data={this.state.data} /> : <BarChart data={this.state.data} />;
+        return (
+            <div>
+                {chart}
+                <List data={this.state.data} platform={this.state.platform} location={this.state.location} />
+            </div>
+        )
     }
     
     render() {
         return (
             <div className="App">
-                <h2>Web Trends</h2>
                 <Filters platform={this.state.platform} location={this.state.location} locations={this.state.locations} editFilter={this.editFilter} />
                 {this.renderData()}
             </div>
