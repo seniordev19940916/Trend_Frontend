@@ -1,6 +1,7 @@
 // Google Trends data fetcher
 
 import googleApi from 'google-trends-api';
+import moment from 'moment'; 
 import locations from '../config/locations';
 import googleModel from '../models/Google';
 
@@ -10,16 +11,32 @@ const googleTrends = {
         for (let i = 0; i < locationLen; i++) {
             const location = locations[i];
             if (!location.iso) continue;
-            googleApi.dailyTrends({geo: location.iso}, (error, results) => {
-                if (error) {
-                    console.log(`[trends server] An unexpected error occured while running a query to fetch data for Google Trends (${location.location}:\n${error}).`);
+            googleModel.findOne({location: location.location}, {}, { sort: {'created_at' : -1 }}, (err, item) => {
+                let getData = false;
+                if (err || !item) {
+                    getData = true;
                 }
                 else {
-                    console.log(`[trends server] Updating all database entries for Google Trends (${location.location})...`);
-                    googleModel.deleteMany({location: location.location}, (error) => {
-                        if (error) return console.error(error);
-                        googleTrends.insertTrends(location, results);
+                    if (!moment(item.createdAt).isAfter(moment().subtract(1, 'hours'))) {
+                        getData = true;
+                    }
+                }
+                if (getData) {
+                    googleApi.dailyTrends({geo: location.iso}, (error, results) => {
+                        if (error) {
+                            console.log(`[trends server] An unexpected error occured while running a query to fetch data for Google Trends (${location.location}:\n${error}).`);
+                        }
+                        else {
+                            console.log(`[trends server] Updating all database entries for Google Trends (${location.location})...`);
+                            googleModel.deleteMany({location: location.location}, (error) => {
+                                if (error) return console.error(error);
+                                googleTrends.insertTrends(location, results);
+                            });
+                        }
                     });
+                }
+                else {
+                    console.log(`[trends server] Database entries for Google Trends (${location.location}) are already up to date.`);
                 }
             });
         };
