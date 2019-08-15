@@ -1,23 +1,14 @@
 import 'dotenv/config';
 import request from 'request';
-import moment from 'moment'; 
 import locations from '../config/locations';
+import helpers from '../data/helpers';
 import youtubeModel from '../models/Youtube';
 
 const youtubeVideos = {
     getVideos: () => {
         locations.forEach(location => {
             youtubeModel.findOne({location: location.location}, {}, { sort: { 'created_at' : -1 } }, (err, item) => {
-                let getData = false;
-                if (err || !item) {
-                    getData = true;
-                }
-                else {
-                    if (!moment(item.createdAt).isAfter(moment().subtract(1, 'hours'))) {
-                        getData = true;
-                    }
-                }
-                if (getData) {
+                if (helpers.updateCollection(err, item)) {
                     let url = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2Cstatistics&chart=mostpopular&maxResults=50&order=viewCount&key=${process.env.GOOGLE_API_KEY}`;
                     url += location.iso ? `&regionCode=${location.iso}` : '';
                     request({url: url, json: true}, (error, response, body) => {

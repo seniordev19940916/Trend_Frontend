@@ -1,8 +1,8 @@
 // Google Trends data fetcher
 
 import googleApi from 'google-trends-api';
-import moment from 'moment'; 
 import locations from '../config/locations';
+import helpers from '../data/helpers';
 import googleModel from '../models/Google';
 
 const googleTrends = {
@@ -12,16 +12,7 @@ const googleTrends = {
             const location = locations[i];
             if (!location.iso) continue;
             googleModel.findOne({location: location.location}, {}, { sort: {'created_at' : -1 }}, (err, item) => {
-                let getData = false;
-                if (err || !item) {
-                    getData = true;
-                }
-                else {
-                    if (!moment(item.createdAt).isAfter(moment().subtract(1, 'hours'))) {
-                        getData = true;
-                    }
-                }
-                if (getData) {
+                if (helpers.updateCollection(err, item)) {
                     googleApi.dailyTrends({geo: location.iso}, (error, results) => {
                         if (error) {
                             console.log(`[trends server] An unexpected error occured while running a query to fetch data for Google Trends (${location.location}:\n${error}).`);

@@ -1,26 +1,14 @@
 // Reddit subs data fetcher
 
 import request from 'request';
-import moment from 'moment';
+import helpers from '../data/helpers';
 import redditModel from '../models/Reddit';
-
-const location = 'Worldwide';
 
 const redditSubs = {
     location: 'Worldwide',
     getSubs: () => {
         redditModel.findOne({}, {}, { sort: { 'created_at' : -1 } }, (err, item) => {
-            let getData = false;
-            if (err || !item) {
-                getData = true;
-            }
-            else {
-                if (!moment(item.createdAt).isAfter(moment().subtract(1, 'hours'))) {
-                    getData = true;
-                }
-            }
-            if (getData) {
-                console.log(`[trends server] Database entries for Reddit Subs (${redditSubs.location}) are already up to date.`);
+            if (helpers.updateCollection(err, item)) {
                 request({url: 'https://www.reddit.com/api/trending_subreddits.json', json: true}, (error, response, body) => {
                     if (error || response.statusCode !== 200) {
                         console.log(`An unexpected error occured while requesting Reddit Subs.`);
