@@ -4,6 +4,7 @@ import express from 'express';
 import locations from '../config/locations';
 import googleModel from '../models/Google';
 import redditModel from '../models/Reddit';
+import twitterModel from '../models/Twitter';
 import youtubeModel from '../models/Youtube';
 
 const app = express();
@@ -26,6 +27,7 @@ const routes = {
         });
         routes.createEndpoints('google_trends', googleModel, locations.filter(location => location.location !== 'Worldwide').map(location => location.location));
         routes.createEndpoints('reddit_subs', redditModel, ['Worldwide']);
+        routes.createEndpoints('twitter_trends', twitterModel, locations.map(location => location.location));
         routes.createEndpoints('youtube_videos', youtubeModel, locations.map(location => location.location));
     },
     createEndpoints: (platform, model, platformLocations) => {

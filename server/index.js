@@ -6,6 +6,7 @@ import routes from './routes/router';
 import googleTrends from './data/google';
 import redditSubs from './data/reddit';
 import youtubeVideos from './data/youtube';
+import twitterTrends from './data/twitter';
 
 routes.init();
 
@@ -18,4 +19,5 @@ db.once('open', () => {
     redditSubs.getSubs();
     googleTrends.getTrends();
     youtubeVideos.getVideos();
+    twitterTrends.getTrends();
 });
