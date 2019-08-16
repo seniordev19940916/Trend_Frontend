@@ -1,3 +1,7 @@
+.Filters {
+    color: #fff;
+}
+
 .Filters > div {
     display: flex;
     justify-content: center;
@@ -9,26 +13,7 @@
     height: 32px;
 }
 
-.Filters .fa-icon {
-    padding: 8px;
-    border-radius: 50%;
-    color: #fff;
-}
-
-.Filters .fa-icon.google_trends {
-    background-color: #4285F4;
-}
-
-.Filters .fa-icon.reddit_subs {
-    background-color: #ff4301;
-}
-
-.Filters .fa-icon.youtube_videos {
-    background-color: #c4302b;
-}
-
 .Filters > p {
-    color: #fff;
     text-shadow: 0 0 5px rgba(0,0,0,0.2);
     font-style: italic;
 }

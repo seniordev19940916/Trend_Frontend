@@ -64,7 +64,7 @@ class App extends React.Component {
         if (this.state.data.length) {
             return (
                 <div>
-                    {this.state.platform === 'google_trends' ? <WordChart data={this.state.data} /> : this.state.platform === 'youtube_videos' ? <BarChart data={this.state.data} /> : ''}
+                    {this.state.platform === 'google_trends' || this.state.platform === 'twitter_trends' ? <WordChart platform={this.state.platform} data={this.state.data} /> : this.state.platform === 'youtube_videos' ? <BarChart data={this.state.data} /> : ''}
                     <List data={this.state.data} platform={this.state.platform} location={this.state.location} />
                 </div>
             )

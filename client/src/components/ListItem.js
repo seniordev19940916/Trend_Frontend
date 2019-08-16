@@ -1,6 +1,6 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faGoogle, faYoutube, faReddit} from '@fortawesome/free-brands-svg-icons';
+import {faGoogle, faYoutube, faTwitter, faReddit} from '@fortawesome/free-brands-svg-icons';
 import './ListItem.css';
 
 const ListItem = ({platform, item}) => {
@@ -34,6 +34,20 @@ const ListItem = ({platform, item}) => {
                 </div>
             )
         }
+        else if (platform === 'twitter_trends') {
+            return (
+                <div className="ListItem twitter">
+                    <div className="metric">{item.tweets === 10000 ? '<10,000' : item.tweets.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</div>
+                    <div>{item.name}</div>
+                    <div className="link">
+                        <a href={item.url} rel="noopener noreferrer" target="_blank">
+                            <FontAwesomeIcon icon={faTwitter} size="lg" />
+                            <span> View results</span>
+                        </a>
+                    </div>
+                </div>
+            )
+        }        
         else if (platform === 'youtube_videos') {
             return (
                 <div className="ListItem youtube">
@@ -41,6 +55,7 @@ const ListItem = ({platform, item}) => {
                     <div className="metric">{item.views ? item.views.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}</div>
                     <div className="metric">{item.likes ? item.likes.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : '-'}</div>
                     <div>{item.name}</div>
+                    <p><em>{`Published by ${item.publisher}`}</em></p>
                     <div className="link">
                         <a href={item.url} rel="noopener noreferrer" target="_blank">
                             <FontAwesomeIcon icon={faYoutube} size="lg" /> 

@@ -16,7 +16,7 @@ const Filters = ({platform, location, locations, editFilter}) => {
         },
         twitter_trends: {
             icon: faTwitter,
-            desc: 'The data below displays subreddits that have gained in popularity over the past 24 hours.'
+            desc: 'The data below displays the most popular phrases on Twitter over the past 24 hours.'
         },
         youtube_videos: {
             icon: faYoutube,
@@ -27,7 +27,7 @@ const Filters = ({platform, location, locations, editFilter}) => {
     return (
         <div className="Filters">
             <div>
-                <FontAwesomeIcon className={`fa-icon ${platform}`} icon={platformData[platform].icon} size="lg" />
+                <FontAwesomeIcon className={`fa-icon ${platform}`} icon={platformData[platform].icon} size="2x" />
                 <Dropdown label="platform" value={platform} options={['Google Trends', 'Reddit Subs', 'Twitter Trends', 'YouTube Videos']} onChange={editFilter} />
                 <Dropdown label="location" value={location} options={locations} onChange={editFilter} />
                 <img src={require(`../img/flags/${location}.png`)} alt={location} />

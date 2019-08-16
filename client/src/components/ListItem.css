@@ -18,6 +18,9 @@
 .ListItem.reddit {
     min-width: 220px;
 }
+.ListItem.twitter {
+    min-width: 180px;
+}
 .ListItem.youtube {
     width: 200px;
 }

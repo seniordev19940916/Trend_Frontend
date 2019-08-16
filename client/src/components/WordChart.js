@@ -27,7 +27,7 @@ class WordChart extends React.Component {
         series.labels.template.url = "{url}";
         series.labels.template.urlTarget = "_blank";
         series.labels.template.isHTML = true;
-        series.labels.template.tooltipText = '[bold]{word}[/]: {value}+ searches';
+        series.labels.template.tooltipText = this.props.platform === "google_trends" ? '[bold]{word}[/]: {value}+ searches' : '[bold]{word}[/]: {value} tweets';
         series.tooltip.fontSize = 15;
         const hoverState = series.labels.template.states.create("hover");
         hoverState.properties.fill = am4core.color("#009bd6"); 
@@ -48,10 +48,11 @@ class WordChart extends React.Component {
     getData(data) {
         const chartData = [];
         if (data) {
+            const metric = this.props.platform === "google_trends" ? "searches" : "tweets";
             data.forEach((item) => {
                 chartData.push({
                     word: item.name, //app.decodeHTML(item.name),
-                    count: item.searches,
+                    count: item[metric],
                     url: item.url
                 });
             });

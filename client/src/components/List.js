@@ -6,7 +6,7 @@ const List = ({data, platform, location}) => {
     const metrics = {
         google_trends: ['searches'],
         reddit_subs: ['subscribers'],
-        twitter_trends: ['tweet_volume'],
+        twitter_trends: ['tweets'],
         youtube_videos: ['views', 'likes'],
     }
     
