@@ -14,3 +14,14 @@ a:visited {
 a:hover {
     color: hotpink;
 }
+
+.chart {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 300px;
+}
+
+.spinning-wheel {
+    margin-top: 40px;
+}
