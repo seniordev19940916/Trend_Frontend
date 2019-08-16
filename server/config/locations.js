@@ -12,7 +12,6 @@ const locations = [
     {location: "Russia", woeid: 23424936, iso: "RU"},
     {location: "South Africa", woeid: 23424942, iso: "ZA"},
     {location: "Sweden", woeid: 23424954, iso: "SE"},
-    {location: "Turkey", woeid: 23424969, iso: "TR"},
     {location: "United Kingdom", woeid: 23424975, iso: "GB"},
     {location: "United States", woeid: 23424977, iso: "US"},
     {location: "Worldwide", woeid: 1, iso: ""}
