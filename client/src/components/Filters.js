@@ -8,7 +8,7 @@ const Filters = ({platform, location, locations, editFilter}) => {
     const platformData = {
         google_trends: {
             icon: faGoogle,
-            desc: 'The data below displays the top 20 search terms that jumped significantly in traffic among all searches on Google over the past 24 hours.'
+            desc: 'The data below displays the top 20 search terms that jumped significantly in traffic over the past 24 hours.'
         },
         reddit_subs: {
             icon: faRedditAlien,
@@ -16,7 +16,7 @@ const Filters = ({platform, location, locations, editFilter}) => {
         },
         youtube_videos: {
             icon: faYoutube,
-            desc: 'The data below displays the top 50 YouTube videos that recently have gained in popularity'
+            desc: 'The data below displays YouTube videos that recently have gained in popularity.'
         }
     }
                             

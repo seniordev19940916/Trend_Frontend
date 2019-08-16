@@ -3,7 +3,6 @@ import * as am4core from "@amcharts/amcharts4/core";
 //import * as am4charts from "@amcharts/amcharts4/charts";
 import * as am4plugins_wordCloud from "@amcharts/amcharts4/plugins/wordCloud"; 
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-import './WordChart.css';
 
 am4core.useTheme(am4themes_animated);
 
@@ -21,8 +20,8 @@ class WordChart extends React.Component {
         series.heatRules.push({
          "target": series.labels.template,
          "property": "fill",
-         "min": am4core.color("#bbb"),
-         "max": am4core.color("#fff"),
+         "min": am4core.color("#eec22d"),
+         "max": am4core.color("#74bc5c"),
          "dataField": "value"
         });
         series.labels.template.url = "{url}";
@@ -47,7 +46,6 @@ class WordChart extends React.Component {
     }
     
     getData(data) {
-        console.log(data);
         const chartData = [];
         if (data) {
             data.forEach((item) => {
@@ -63,7 +61,7 @@ class WordChart extends React.Component {
     
     render() {
         return (
-            <div className="WordChart" id="word-chart"></div>
+            <div className="chart" id="word-chart"></div>
         );
     }
 }
