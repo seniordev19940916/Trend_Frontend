@@ -6,7 +6,7 @@ const twitterSchema = new mongoose.Schema({
     name: String,
     location: String,
     url: String,
-    tweet_volume: Number
+    tweets: Number
 }, {timestamps: true});
 
 export default mongoose.model('twitter_trends', twitterSchema);

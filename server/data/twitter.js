@@ -45,7 +45,7 @@ const twitterTrends = {
             name: trend.name,
             location: location.location,
             url: trend.url,
-            tweet_volume: trend.tweet_volume,
+            tweets: trend.tweet_volume ? trend.tweet_volume : 10000,
         });
         dbData.save((error, dbData) => {
             if (error) return console.error(error);
