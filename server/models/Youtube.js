@@ -9,7 +9,6 @@ const youtubeSchema = new mongoose.Schema({
     image: String,
     views: Number,
     likes: Number,
-    comments: Number,
     publisher: String,
     published: Date
 }, {timestamps: true});

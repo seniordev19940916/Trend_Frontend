@@ -42,7 +42,6 @@ const youtubeVideos = {
             image: video.snippet.thumbnails.high.url,
             views: video.statistics.hasOwnProperty('viewCount') ? video.statistics.viewCount : 0,
             likes: video.statistics.hasOwnProperty('likeCount') ? video.statistics.likeCount : 0,
-            comments: video.statistics.hasOwnProperty('commentCount') ? video.statistics.commentCount : 0,
             publisher: video.snippet.channelTitle,
             published: video.snippet.publishedAt.substr(0, 8)
         });
