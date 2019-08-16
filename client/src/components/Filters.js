@@ -27,7 +27,7 @@ const Filters = ({platform, location, locations, editFilter}) => {
     return (
         <div className="Filters">
             <div>
-                <FontAwesomeIcon className={`fa-icon ${platform}`} icon={platformData[platform].icon} size="2x" />
+                <FontAwesomeIcon className="fa-icon" icon={platformData[platform].icon} size="2x" />
                 <Dropdown label="platform" value={platform} options={['Google Trends', 'Reddit Subs', 'Twitter Trends', 'YouTube Videos']} onChange={editFilter} />
                 <Dropdown label="location" value={location} options={locations} onChange={editFilter} />
                 <img src={require(`../img/flags/${location}.png`)} alt={location} />

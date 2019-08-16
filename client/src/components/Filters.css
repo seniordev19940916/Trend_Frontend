@@ -1,5 +1,7 @@
 .Filters {
     color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 20px;
 }
 
 .Filters > div {
@@ -16,4 +18,8 @@
 .Filters > p {
     text-shadow: 0 0 5px rgba(0,0,0,0.2);
     font-style: italic;
+}
+
+.Filters .fa-icon {
+    margin-top: 3px;
 }
