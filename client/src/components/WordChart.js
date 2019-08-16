@@ -27,7 +27,7 @@ class WordChart extends React.Component {
         series.labels.template.url = "{url}";
         series.labels.template.urlTarget = "_blank";
         series.labels.template.isHTML = true;
-        series.labels.template.tooltipText = '[bold]{word}[/]: {value} searches';
+        series.labels.template.tooltipText = '[bold]{word}[/]: {value}+ searches';
         series.tooltip.fontSize = 15;
         const hoverState = series.labels.template.states.create("hover");
         hoverState.properties.fill = am4core.color("#009bd6"); 

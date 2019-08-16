@@ -61,16 +61,15 @@ class App extends React.Component {
     }
     
     renderData() {
-        if (!this.state.data.length) {
-            return <FontAwesomeIcon className="spinning-wheel" icon={faSpinner} size="5x" spin={true} color="#fff" />
+        if (this.state.data.length) {
+            return (
+                <div>
+                    {this.state.platform === 'google_trends' ? <WordChart data={this.state.data} /> : this.state.platform === 'youtube_videos' ? <BarChart data={this.state.data} /> : ''}
+                    <List data={this.state.data} platform={this.state.platform} location={this.state.location} />
+                </div>
+            )
         }
-        const chart = this.state.platform === 'google_trends' ? <WordChart data={this.state.data} /> : this.state.platform === 'reddit_subs' ? <WordChart data={this.state.data} /> : <BarChart data={this.state.data} />;
-        return (
-            <div>
-                {chart}
-                <List data={this.state.data} platform={this.state.platform} location={this.state.location} />
-            </div>
-        )
+        return <FontAwesomeIcon className="spinning-wheel" icon={faSpinner} size="5x" spin={true} color="#fff" />
     }
     
     render() {

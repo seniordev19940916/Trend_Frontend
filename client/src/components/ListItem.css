@@ -1,9 +1,10 @@
 .ListItem {
+    font-size: 0.9em;
     position: relative;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2)/*, inset 0 0 50px rgba(0, 0, 0, 0.1)*/;
-    margin: 10px;
+    margin: 12px 12px 18px 12px;
     border-radius: 4px;
-    padding: 14px;
+    padding: 14px 14px 40px 14px;
     background: #f2f2f2;
     transition: all 0.2s ease-in-out;
 }
@@ -12,28 +13,31 @@
 }
 
 .ListItem.google {
-    width: 110px;
+    width: 120px;
 }
 .ListItem.reddit {
-    min-width: 240px;
+    min-width: 220px;
 }
 .ListItem.youtube {
     width: 200px;
 }
 
+.ListItem .link {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    width: 100%;
+}
+
 .ListItem img {
+    margin-bottom: 8px;
     border-radius: 4px;
     width: 100%;
 }
 
-.ListItem h4 {
-    margin: 0;
+.ListItem.google img {
+    max-width: 80px;
 }
-
-/*.ListItem.google a {
-    position: absolute;
-    bottom: 0;
-}*/
 
 .ListItem.youtube img {
     border-radius: 4px;
@@ -42,15 +46,12 @@
 }
 
 .ListItem .metric {
-    min-width: 60px;
-    color: #FFF;
     position: absolute;
     z-index: 10;
-    left: -6px;
+    left: -8px;
     top: -12px;
-    background: #339966;
-    border-radius: 2px;
-    padding: 2px 6px 2px 6px;
-    font-size: 0.9em;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.ListItem .metric:nth-of-type(2) {
+    left: 70px;
 }

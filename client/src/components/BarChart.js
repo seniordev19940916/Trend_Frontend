@@ -7,6 +7,22 @@ am4core.useTheme(am4themes_animated);
 
 class BarChart extends React.Component {
     componentDidMount() {
+        this.renderChart();
+    }
+    
+    componentWillUnmount() {
+        if (this.chart) {
+            this.chart.dispose();
+        }
+    }
+    
+    componentDidUpdate() {
+        this.chart.dispose();
+        this.renderChart();
+        //this.chart.data = this.getData(this.props.data);
+    }
+    
+    renderChart() {
         let chart = am4core.create("bar-chart", am4charts.XYChart);
         chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
         
@@ -105,16 +121,6 @@ class BarChart extends React.Component {
         });
         this.chart = chart;
         this.series = series;
-    }
-    
-    componentWillUnmount() {
-        if (this.chart) {
-            this.chart.dispose();
-        }
-    }
-    
-    componentDidUpdate() {
-        this.chart.data = this.getData(this.props.data);
     }
     
     getData(data) {
