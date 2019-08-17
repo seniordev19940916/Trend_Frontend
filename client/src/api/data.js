@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const api = {
     getData: (endpoint) => {
-        const url = `http://localhost:3002/api/${endpoint}`; // Get port from environment variables
+        const url = `http://localhost:3001/api/${endpoint}`; // Get port from environment variables
         return axios.get(url).then(response => {
             return response.data
         }).catch(error => {
