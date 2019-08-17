@@ -8,7 +8,7 @@ Trends uses the concurrently package to start both the server and the client by 
 
 Data will automatically be collected when running the server applications starts. In a producational environment, you should probably implement some cron jobs.
 
-The server application uses dotenv to read environment variables. Make sure to create a .env file with the following variables in your root folder:
+The server application uses dotenv to read environment variables. Get credentials to the Google API and Twitter API, and make sure to create a .env file with the following variables in your root folder:
 - GOOGLE_API_KEY
 - TWITTER_CONSUMER_KEY
 - TWITTER_CONSUMER_SECRET
