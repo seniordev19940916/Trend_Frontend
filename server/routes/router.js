@@ -9,7 +9,7 @@ import youtubeModel from '../models/Youtube';
 
 const app = express();
 const router = express.Router();
-const port = process.env.PORT || 3001;
+const port = 3001;
 
 const routes = {
     init: () => {
