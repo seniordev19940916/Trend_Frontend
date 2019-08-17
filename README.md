@@ -4,6 +4,6 @@ Trends is a application that collects current trends from Google, Reddit, Twitte
 
 Using the MERN stack (MongoDB, Express, React, Node), the server application runs on Node while the frontend uses React to dynamically update the data.
 
-Trends uses the concurrently package to start both the server and the client with `npm run start`.
+Trends uses the concurrently package to start both the server and the client by running `npm run start` from the root folder.
 
 Data will automatically be collected when running the server applications starts. In a producational environment, you should probably implement some cron jobs.
