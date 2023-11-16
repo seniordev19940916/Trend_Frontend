@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./LandingPage.css";
 import Login from "./Login";
 import Logout from "./Logout";
-import App from "./App";
 import Profile from "./profile";
+import App from "./App";
 
 function LandingPage() {
   return (
@@ -23,6 +23,9 @@ function LandingPage() {
         </nav>
         <Routes>
           <Route path="/app" element={<App />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </div>
