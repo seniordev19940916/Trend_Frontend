@@ -11,12 +11,12 @@ function LandingPage() {
     <div className="landingPage-container">
       <Router>
         <nav>
-          <Link className="linkStyle" to="/About">
+          {/* <Link className="linkStyle" to="/About">
             About
           </Link>
           <Link className="linkStyle" to="/Contacts">
             Contacts
-          </Link>
+          </Link> */}
           <Login />
           <Logout />
           <Profile />
