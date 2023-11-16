@@ -14,7 +14,6 @@ const Logout = () => {
           {" "}
           Log out{" "}
         </button>
-
         <Secret />
       </div>
     )

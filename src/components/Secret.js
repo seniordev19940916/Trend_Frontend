@@ -6,7 +6,7 @@ const Secret = () => {
   return (
     isAuthenticated && (
       <div>
-        <p>Welcome!</p>
+        <p>Welcome! But This Private</p>
       </div>
     )
   );
