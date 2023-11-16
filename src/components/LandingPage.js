@@ -11,7 +11,7 @@ function LandingPage() {
     <div className="landingPage-container">
       <Router>
         <nav>
-          <Link className="linkStyle" to="/">
+          <Link className="linkStyle" to="/About">
             About
           </Link>
           <Link className="linkStyle" to="/Contacts">
