@@ -1,8 +1,8 @@
 // Server - running on Node.js
 
-import express from "express";
-import locations from "../config/locations";
-import googleModel from "../models/Google";
+const express = require("express");
+const locations = require("../config/locations");
+const googleModel = require("../models/Google");
 
 const app = express();
 const router = express.Router();
@@ -56,4 +56,4 @@ app.listen(port, () =>
   )
 );
 
-export default routes;
+module.exports = routes;
