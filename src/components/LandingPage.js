@@ -4,6 +4,7 @@ import "./LandingPage.css";
 import Login from "./Login";
 import Logout from "./Logout";
 import App from "./App";
+import Profile from "./profile";
 
 function LandingPage() {
   return (
@@ -18,6 +19,7 @@ function LandingPage() {
           </Link>
           <Login />
           <Logout />
+          <Profile />
         </nav>
         <Routes>
           <Route path="/app" element={<App />} />
