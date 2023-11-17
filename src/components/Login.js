@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import "./Login.css";
 
 const Login = () => {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -10,16 +11,8 @@ const Login = () => {
           Log out
         </button>
       ) : (
-        <button
-          onClick={() => loginWithRedirect()}
-          style={{
-            position: "fixed",
-            right: "20px",
-            top: "20px",
-            background: "#eff4fa",
-          }}
-        >
-          Log in
+        <button onClick={() => loginWithRedirect()} className="login-button">
+          <text className="btn">Log In</text>
         </button>
       )}
     </div>
