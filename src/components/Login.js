@@ -10,7 +10,17 @@ const Login = () => {
           Log out
         </button>
       ) : (
-        <button onClick={() => loginWithRedirect()}>Log in</button>
+        <button
+          onClick={() => loginWithRedirect()}
+          style={{
+            position: "fixed",
+            right: "20px",
+            top: "20px",
+            background: "#eff4fa",
+          }}
+        >
+          Log in
+        </button>
       )}
     </div>
   );

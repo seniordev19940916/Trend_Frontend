@@ -29,6 +29,8 @@ a:hover {
 
 .spinning-wheel {
   margin-top: 40px;
+  position: fixed;
+  top: 200px;
 }
 
 .metric {
