@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./components/App";
+// import App from "./components/App";
+import LandingPage from "./components/LandingPage";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
@@ -18,7 +19,8 @@ root.render(
         clientId="Cx0rKVgdTfUWmS1h3pciRWpoY5jvOWi5"
         redirectUri={window.location.origin}
       >
-        <App />
+        {/* <App /> */}
+        <LandingPage />
       </Auth0Provider>
     </Provider>
   </React.StrictMode>

@@ -2,14 +2,27 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Login = () => {
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
   return (
-    !isAuthenticated && (
-      <button className="transparentBtn" onClick={() => loginWithRedirect()}>
-        {" "}
-        Log in{" "}
-      </button>
-    )
+    <div style={{ display: "flex", alignItems: "center" }}>
+      {isAuthenticated ? (
+        <button style={{ color: "#c28585" }} onClick={() => logout()}>
+          Log out
+        </button>
+      ) : (
+        <button
+          onClick={() => loginWithRedirect()}
+          style={{
+            position: "fixed",
+            right: "20px",
+            top: "20px",
+            background: "#eff4fa",
+          }}
+        >
+          Log in
+        </button>
+      )}
+    </div>
   );
 };
 
