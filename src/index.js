@@ -17,7 +17,7 @@ root.render(
       <Auth0Provider
         domain="dev-2qz2wjgdc2owecxm.us.auth0.com"
         clientId="Cx0rKVgdTfUWmS1h3pciRWpoY5jvOWi5"
-        redirectUri="https://trend-frontend.vercel.app/app"
+        redirectUri={window.location.origin}
       >
         {/* <App /> */}
         <LandingPage />
