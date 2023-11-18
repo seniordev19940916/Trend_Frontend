@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import "./LandingPage.css";
-// import Login from "./Login";
-// import Logout from "./Logout";
 import SmoothScroll from "smooth-scroll";
-// import Profile from "./profile";
-// import App from "./App";
 import JsonData from "../data/data.json";
 import { Navigation } from "../landingComponent/navigation";
 import { Header } from "../landingComponent/header";
