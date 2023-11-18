@@ -3,7 +3,11 @@ import Login from "../components/Login";
 
 export const Navigation = (props) => {
   return (
-    <div id="menu" className="navbar navbar-default navbar-fixed-top">
+    <div
+      id="menu"
+      className="navbar navbar-default navbar-fixed-top"
+      style={{ display: "flex" }}
+    >
       <div className="container">
         <div className="navbar-header">
           <button
