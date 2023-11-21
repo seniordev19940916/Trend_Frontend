@@ -4,7 +4,7 @@ const axios = require("axios");
 
 const api = {
   getData: (endpoint) => {
-    const url = `http://52.64.37.147:80/api/${endpoint}`; // Get port from environment variables
+    const url = `http://52.64.37.147/api/${endpoint}`; // Get port from environment variables
     return axios
       .get(url)
       .then((response) => {
