@@ -54,4 +54,8 @@ app.listen(port, () =>
   )
 );
 
+<<<<<<< HEAD
 module.exports = routes;
+=======
+module.exports = routes;
+>>>>>>> ce3ed38b65656fa602f32bf56cd396874605b479
